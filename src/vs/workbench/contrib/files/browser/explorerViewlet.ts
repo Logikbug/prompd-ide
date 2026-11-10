@@ -272,7 +272,7 @@ export const VIEW_CONTAINER: ViewContainer = viewContainerRegistry.registerViewC
 	},
 }, ViewContainerLocation.Sidebar, { isDefault: true });
 
-const openFolder = localize('openFolder', "Open Folder");
+const openFolder = localize('openFolder', "Open Project");
 const addAFolder = localize('addAFolder', "add a folder");
 const openRecent = localize('openRecent', "Open Recent");
 

@@ -22,3 +22,20 @@ product.overrides.json
 *.snap.actual
 *.tsbuildinfo
 .vscode-test
+
+# Prompd IDE build artifacts
+prompd-ide.exe
+prompd-ide-old.exe
+*.ico
+/bin/
+/obj/
+cli-tools/
+/resources.pak
+/chrome_*.pak
+/v8_*.bin
+/snapshot_blob.bin
+/icudtl.dat
+/*.dll
+/locales/
+/resources/app/
+.claude/

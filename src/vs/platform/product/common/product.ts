@@ -61,15 +61,15 @@ else {
 	if (Object.keys(product).length === 0) {
 		Object.assign(product, {
 			version: '1.102.0-dev',
-			nameShort: 'Code - OSS Dev',
-			nameLong: 'Code - OSS Dev',
-			applicationName: 'code-oss',
-			dataFolderName: '.vscode-oss',
-			urlProtocol: 'code-oss',
-			reportIssueUrl: 'https://github.com/microsoft/vscode/issues/new',
+			nameShort: 'Prompd IDE Dev',
+			nameLong: 'Prompd IDE - Enterprise Prompt Engineering Environment Dev',
+			applicationName: 'prompd-ide',
+			dataFolderName: '.prompd-ide',
+			urlProtocol: 'prompd-ide',
+			reportIssueUrl: 'https://github.com/Logikbug/prompd-ide/issues/new',
 			licenseName: 'MIT',
-			licenseUrl: 'https://github.com/microsoft/vscode/blob/main/LICENSE.txt',
-			serverLicenseUrl: 'https://github.com/microsoft/vscode/blob/main/LICENSE.txt'
+			licenseUrl: 'https://github.com/Logikbug/prompd-ide/blob/main/LICENSE.txt',
+			serverLicenseUrl: 'https://github.com/Logikbug/prompd-ide/blob/main/LICENSE.txt'
 		});
 	}
 }

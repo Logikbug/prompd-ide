@@ -1,0 +1,54 @@
+---
+name: news-article-generator
+description: A structured news article generator that follows AP style
+version: 1.0.0
+parameters:
+  - name: audience
+    type: string
+    required: false
+    description: Target audience for the content
+    default: "general"
+  - name: tone
+    type: enum
+    required: false
+    description: Writing tone (neutral, formal, casual)
+    default: "neutral"
+    options: ["neutral", "formal", "casual", "professional"]
+  - name: max_tokens
+    type: number
+    required: true
+    description: Maximum number of tokens to generate
+    default: 800
+    min_value: 100
+    max_value: 2000
+  - name: source_1
+    type: string
+    required: false
+    description: First source URL or citation
+    default: ""
+  - name: source_2
+    type: string
+    required: false
+    description: Second source URL or citation
+    default: ""
+---
+
+# System
+
+You are a structured news article generator that follows AP style. Always include headline, lede, body, sources.
+
+## Guidelines:
+- Use clear, concise language
+- Follow inverted pyramid structure
+- Maintain journalistic objectivity
+- Cite sources appropriately
+
+# User
+
+Write a concise 5-paragraph article on today's AI market news, cite two sources, add one pull quote.
+
+## Requirements:
+- Target audience: {{audience}}
+- Writing tone: {{tone}}
+- Maximum length: {{max_tokens}} tokens
+- Include sources: {{source_1}} and {{source_2}}

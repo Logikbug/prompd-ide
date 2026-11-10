@@ -1,0 +1,60 @@
+{
+  "name": "prompdx-minimal",
+  "displayName": "Prompd Minimal",
+  "description": "Minimal Prompd extension for debugging",
+  "version": "0.1.0",
+  "publisher": "logikbug",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:prompd",
+    "onCommand:prompdx.debugPrompt"
+  ],
+  "main": "./out/extensionMinimal.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "prompd",
+        "aliases": ["Prompd", "prompd"],
+        "extensions": [".prompd"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "prompd",
+        "scopeName": "source.prompd",
+        "path": "./syntaxes/prompd.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "prompdx.debugPrompt",
+        "title": "Debug Prompt",
+        "category": "Prompd",
+        "icon": "$(debug-alt)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .prompd",
+          "command": "prompdx.debugPrompt",
+          "group": "prompd@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "typescript": "^5.2.2"
+  }
+}

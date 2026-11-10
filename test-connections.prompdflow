@@ -1,0 +1,122 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "id": "test_flow_001",
+    "name": "Test Connection Flow",
+    "description": "A test flow to verify node connections work",
+    "version": "1.0.0",
+    "created": "2025-08-22T20:00:00.000Z",
+    "modified": "2025-08-22T20:00:00.000Z",
+    "schemaVersion": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "node_1",
+      "type": "parameter",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "label": "Input Parameter",
+        "description": "Test input parameter",
+        "enabled": true,
+        "config": {
+          "type": "parameter",
+          "parameterName": "testInput",
+          "dataType": "string",
+          "required": false,
+          "sensitive": false,
+          "validation": []
+        }
+      },
+      "inputPorts": [],
+      "outputPorts": [{ "id": "output", "name": "Output", "dataType": "string", "required": false }],
+      "metadata": {
+        "collapsed": false,
+        "breakpoint": false
+      }
+    },
+    {
+      "id": "node_2", 
+      "type": "prompt",
+      "position": { "x": 400, "y": 100 },
+      "data": {
+        "label": "Main Prompt",
+        "description": "Primary prompt processing",
+        "enabled": true,
+        "config": {
+          "type": "prompt",
+          "template": "Process this input: {testInput}",
+          "parameters": [],
+          "provider": { "name": "openai" },
+          "model": { "name": "gpt-4" },
+          "executionSettings": {},
+          "outputFormat": "text",
+          "retryPolicy": { "enabled": false, "maxRetries": 3, "backoffStrategy": "exponential", "backoffDelay": 1000, "retryConditions": [] },
+          "timeout": 30000
+        }
+      },
+      "inputPorts": [{ "id": "input", "name": "Input", "dataType": "string", "required": false }],
+      "outputPorts": [{ "id": "output", "name": "Output", "dataType": "string", "required": false }],
+      "metadata": {
+        "collapsed": false,
+        "breakpoint": false
+      }
+    },
+    {
+      "id": "node_3",
+      "type": "output", 
+      "position": { "x": 700, "y": 100 },
+      "data": {
+        "label": "Final Output",
+        "description": "Output the final result",
+        "enabled": true,
+        "config": {
+          "type": "output"
+        }
+      },
+      "inputPorts": [{ "id": "input", "name": "Input", "dataType": "string", "required": false }],
+      "outputPorts": [],
+      "metadata": {
+        "collapsed": false,
+        "breakpoint": false
+      }
+    }
+  ],
+  "connections": [],
+  "variables": [],
+  "executionConfig": {
+    "parallelism": {
+      "enabled": false,
+      "maxConcurrency": 3,
+      "nodeOrdering": "topological"
+    },
+    "errorHandling": {
+      "retryPolicy": {
+        "enabled": true,
+        "maxRetries": 3,
+        "backoffStrategy": "exponential",
+        "backoffDelay": 1000,
+        "retryConditions": []
+      },
+      "continueOnError": false,
+      "errorLogging": true
+    },
+    "logging": {
+      "level": "info",
+      "logToFile": false,
+      "includeTimestamps": true,
+      "includeNodeData": false
+    },
+    "security": {
+      "encryptSensitiveData": true,
+      "allowDynamicCode": false,
+      "restrictedAPIs": [],
+      "sandboxExecution": true
+    },
+    "performance": {
+      "enableCaching": true,
+      "cacheStrategy": "memory",
+      "cacheTTL": 3600,
+      "maxMemoryUsage": 512
+    }
+  }
+}

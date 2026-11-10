@@ -1,0 +1,70 @@
+{
+  "id": "test-connection-fix",
+  "name": "Test Connection Fix",
+  "description": "Testing if connection lines display properly after scaling fix",
+  "version": "1.0.0",
+  "tags": ["test", "connection", "fix"],
+  "author": "Test",
+  "createdAt": "2025-08-23T00:00:00Z",
+  "nodes": [
+    {
+      "id": "node_1",
+      "type": "prompt",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "label": "Start Node",
+        "description": "First node to test connections",
+        "enabled": true,
+        "config": {
+          "type": "prompt",
+          "template": "Test prompt",
+          "parameters": [],
+          "provider": { "name": "openai" },
+          "model": { "name": "gpt-4" }
+        }
+      },
+      "inputPorts": [],
+      "outputPorts": [{ "id": "output", "name": "Output", "dataType": "any", "required": false }]
+    },
+    {
+      "id": "node_2",
+      "type": "prompt",
+      "position": { "x": 400, "y": 100 },
+      "data": {
+        "label": "End Node",
+        "description": "Second node to receive connection",
+        "enabled": true,
+        "config": {
+          "type": "prompt",
+          "template": "Test prompt 2",
+          "parameters": [],
+          "provider": { "name": "openai" },
+          "model": { "name": "gpt-4" }
+        }
+      },
+      "inputPorts": [{ "id": "input", "name": "Input", "dataType": "any", "required": false }],
+      "outputPorts": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1",
+      "sourceNodeId": "node_1",
+      "sourcePortId": "output",
+      "targetNodeId": "node_2",
+      "targetPortId": "input",
+      "metadata": {
+        "style": "solid"
+      }
+    }
+  ],
+  "variables": [],
+  "globalSettings": {
+    "defaultProvider": "openai",
+    "defaultModel": "gpt-4",
+    "timeout": 30000,
+    "maxRetries": 3,
+    "parallelExecution": false,
+    "errorHandling": "continue"
+  }
+}

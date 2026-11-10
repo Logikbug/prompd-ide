@@ -1,0 +1,9 @@
+{
+    "user_message": "run it",
+    "message_type": "action_request",
+    "context_info": "Working in Prompd IDE",
+    "project_info": "Building AI workflow platform", 
+    "file_path": "C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.bat",
+    "file_content": "@echo off\nsetlocal enabledelayedexpansion\n\nREM ========================================\nREM     PROMPD IDE - Standalone Launch\nREM ========================================\n\necho.\necho ========================================\necho     PROMPD IDE - Standalone Launch\necho ========================================\necho.\n\nREM Set the user data directory for this specific application\nset \"USER_DATA_DIR=%USERPROFILE%\\.prompd-ide\"\n\necho Starting Prompd IDE (Standalone Mode)...\necho Profile: %USER_DATA_DIR%\n\nREM Launch with product configuration and isolated profile\n\"prompd-ide.exe\" --product \"product.prompd.json\" --user-data-dir \"%USER_DATA_DIR%\" %*\n\necho.\necho Prompd IDE is now running in standalone mode!\necho This instance is completely isolated from VS Code.\necho.\npause",
+    "selected_text": ""
+}

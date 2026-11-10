@@ -1,0 +1,62 @@
+{
+  "nameShort": "Prompd IDE",
+  "nameLong": "Prompd IDE - Enterprise Prompt Engineering Environment",
+  "applicationName": "prompd-ide",
+  "dataFolderName": ".prompd-ide",
+  "win32MutexName": "prompdide",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/Logikbug/prompd-ide/blob/main/LICENSE.txt",
+  "serverApplicationName": "prompd-ide-server",
+  "serverDataFolderName": ".prompd-ide-server",
+  "win32DirName": "Prompd IDE",
+  "win32NameVersion": "Prompd IDE",
+  "win32RegValueName": "PrompdIDE",
+  "win32AppUserModelId": "Logikbug.PrompdIDE",
+  "win32ShellNameShort": "&Prompd IDE",
+  "darwinBundleIdentifier": "com.logikbug.prompd-ide",
+  "linuxIconName": "prompd-ide",
+  "licenseFileName": "LICENSE.txt",
+  "reportIssueUrl": "https://github.com/Logikbug/prompd-ide/issues/new",
+  "urlProtocol": "prompd-ide",
+  "extensionsGallery": {
+    "serviceUrl": "",
+    "cacheUrl": "",
+    "itemUrl": "",
+    "controlUrl": ""
+  },
+  "enableTelemetry": false,
+  "aiConfig": {
+    "ariaKey": ""
+  },
+  "builtInExtensions": [
+    {
+      "name": "logikbug.prompd",
+      "path": "./extensions/prompd"
+    }
+  ],
+  "welcomePage": {
+    "title": "Welcome to Prompd IDE",
+    "subtitle": "Enterprise Prompt Engineering Environment",
+    "content": "Start building professional AI workflows with visual prompt chaining."
+  },
+  "fileAssociations": [
+    {
+      "extension": ".prompd",
+      "mimeType": "text/x-prompd",
+      "description": "Prompd Prompt Definition File",
+      "icon": "prompd-file-icon"
+    },
+    {
+      "extension": ".pdflow",
+      "mimeType": "application/x-pdflow",
+      "description": "Prompd Workflow File",
+      "icon": "prompd-workflow-icon"
+    },
+    {
+      "extension": ".pdproj",
+      "mimeType": "text/x-pdproj",
+      "description": "Prompd Project File",
+      "icon": "prompd-project"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- First chat bubble - larger -->
+  <path d="M2 4 C2 2, 4 1, 6 1 L16 1 C18 1, 20 2, 20 4 L20 12 C20 14, 18 15, 16 15 L8 15 L4 18 L4 15 C2 15, 2 14, 2 12 Z" 
+        fill="#007acc" stroke="#005a9e" stroke-width="0.5"/>
+  
+  <!-- Arrow between bubbles -->
+  <path d="M20 8 L24 8" stroke="#4FC1FF" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  
+  <!-- Second chat bubble - larger -->
+  <path d="M24 6 C24 4, 26 3, 28 3 L30 3 C31 3, 32 4, 32 6 L32 14 C32 16, 31 17, 30 17 L28 17 L26 19 L26 17 C24 17, 24 16, 24 14 Z" 
+        fill="#4FC1FF" stroke="#005a9e" stroke-width="0.5"/>
+  
+  <!-- "Pd" text in first bubble - larger -->
+  <text x="11" y="9" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="bold" fill="white" text-anchor="middle">Pd</text>
+  
+  <!-- Flow arrow in second bubble -->
+  <text x="29" y="12" font-family="'Segoe UI', Arial, sans-serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">→</text>
+  
+  <!-- Third response bubble - larger and repositioned -->
+  <path d="M6 20 C6 18, 8 17, 10 17 L20 17 C22 17, 24 18, 24 20 L24 26 C24 28, 22 29, 20 29 L12 29 L8 31 L8 29 C6 29, 6 28, 6 26 Z" 
+        fill="#27ca3f" stroke="#1a8c2e" stroke-width="0.5"/>
+        
+  <!-- Response indicator in third bubble -->
+  <text x="15" y="24" font-family="'Segoe UI', Arial, sans-serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">✓</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4FC1FF"/>
+    </marker>
+  </defs>
+</svg>

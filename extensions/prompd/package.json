@@ -1,0 +1,576 @@
+{
+  "name": "prompd",
+  "displayName": "prompd IDE",
+  "description": "Professional prompt engineering environment",
+  "version": "0.1.0",
+  "publisher": "logikbug",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:prompd",
+    "onLanguage:pdflow",
+    "onLanguage:pdproj",
+    "workspaceContains:**/*.prompd",
+    "workspaceContains:**/*.pdproj",
+    "workspaceContains:**/*.pdflow",
+    "onCustomEditor:prompdx.promptBuilder",
+    "onCustomEditor:prompdx.flowCanvas",
+    "onCustomEditor:prompdx.projectWorkspace",
+    "onView:prompdChat.chatView",
+    "onView:prompdVariables",
+    "onView:prompdParameters",
+    "onView:prompdFlowCanvas",
+    "onView:prompdSnippets",
+    "onView:prompdFiles",
+    "onView:prompdTemplates",
+    "onView:prompd.marketplaceView",
+    "onCommand:prompd.runPrompt",
+    "onCommand:prompd.test.showMessage",
+    "onCommand:prompd.runSection",
+    "onCommand:prompd.addVariable",
+    "onCommand:prompd.addParameter",
+    "onCommand:prompd.showConsole",
+    "onCommand:prompdx.debugPrompt",
+    "onCommand:prompd.editParameter",
+    "onCommand:prompd.runWithParameters",
+    "onCommand:prompd.acceptPrompdAction",
+    "onCommand:prompd.createProjectFromTemplate",
+    "onCommand:prompd.retryPrompdAction",
+    "onCommand:prompd.aiChat",
+    "onCommand:prompd.explainCode",
+    "onCommand:prompd.fixCode",
+    "onCommand:prompd.refactorCode",
+    "onCommand:prompd.generateTests",
+    "onCommand:prompd.copyCode",
+    "onCommand:prompd.applyCodeAction",
+    "onCommand:prompd.previewCodeAction",
+    "onCommand:prompd.chat.optimize",
+    "onCommand:prompd.chat.explain",
+    "onCommand:prompd.chat.addParameters",
+    "onCommand:prompd.chat.improveStructure",
+    "onCommand:prompd.chat.generateFromDescription",
+    "onCommand:prompd.chat.askCustom",
+    "onCommand:prompd.chat.optimizeWorkflow",
+    "onCommand:prompd.chat.addWorkflowStep",
+    "onCommand:prompd.chat.fixConnections",
+    "onCommand:prompd.chat.improveSelection",
+    "onCommand:prompd.chat.explainSelection",
+    "onCommand:prompd.chat.quickFix",
+    "onCommand:prompd.chat.showSuggestions",
+    "onCommand:prompd.chatHistory.refresh",
+    "onCommand:prompd.chatHistory.clear",
+    "onCommand:prompd.chatHistory.export",
+    "onCommand:prompd.openProject",
+    "onCommand:prompd.refreshProjectExplorer"
+  ],
+  "main": "./out/extensionMinimal.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "prompd",
+        "aliases": ["Prompd", "Prompd File", "Prompt Engineering Definition"],
+        "extensions": [".prompd"],
+        "configuration": "./language-configuration.json",
+        "mimetypes": ["text/x-prompd"],
+        "filenamePatterns": ["*.prompd"],
+        "icon": {
+          "light": "./icons/prompd-chat-icon.svg",
+          "dark": "./icons/prompd-chat-icon.svg"
+        }
+      },
+      {
+        "id": "pdflow",
+        "aliases": ["Prompd Flow", "Prompd Flow File"],
+        "extensions": [".pdflow"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/prompd-workflow-icon.svg",
+          "dark": "./icons/prompd-workflow-icon.svg"
+        }
+      },
+      {
+        "id": "pdproj",
+        "aliases": ["Prompd Project", "Prompd Project File"],
+        "extensions": [".pdproj"],
+        "configuration": "./language-configuration.json",
+        "mimetypes": ["text/x-pdproj"],
+        "filenamePatterns": ["*.pdproj"],
+        "icon": {
+          "light": "./icons/prompd-project-multi.ico",
+          "dark": "./icons/prompd-project-multi.ico"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "prompd",
+        "scopeName": "source.prompd",
+        "path": "./syntaxes/prompd.tmLanguage.json"
+      },
+      {
+        "language": "pdflow",
+        "scopeName": "source.json",
+        "path": "./syntaxes/json.tmLanguage.json"
+      },
+      {
+        "language": "pdproj",
+        "scopeName": "source.yaml",
+        "path": "./syntaxes/yaml.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "prompd.runPrompt",
+        "title": "Run Prompt",
+        "category": "prompd",
+        "icon": "$(play)"
+      },
+      {
+        "command": "prompd.test.showMessage",
+        "title": "Test Prompd Extension",
+        "category": "prompd",
+        "icon": "$(check)"
+      },
+      {
+        "command": "prompd.runSection",
+        "title": "Run Section",
+        "category": "prompd",
+        "icon": "$(run)"
+      },
+      {
+        "command": "prompd.addVariable",
+        "title": "Add Variable",
+        "category": "prompd",
+        "icon": "$(add)"
+      },
+      {
+        "command": "prompd.addParameter",
+        "title": "Add Parameter",
+        "category": "prompd",
+        "icon": "$(add)"
+      },
+      {
+        "command": "prompd.showConsole",
+        "title": "Show Console",
+        "category": "prompd",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "prompdx.debugPrompt",
+        "title": "Debug Prompt",
+        "category": "prompd",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "prompd.addParameter",
+        "title": "Add Parameter",
+        "category": "prompd",
+        "icon": "$(add)"
+      },
+      {
+        "command": "prompd.editParameter",
+        "title": "Edit Parameter",
+        "category": "prompd",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "prompd.runWithParameters",
+        "title": "Run with Parameters",
+        "category": "prompd",
+        "icon": "$(play-circle)"
+      },
+      {
+        "command": "prompd.acceptPrompdAction",
+        "title": "Accept & Apply to .prompd",
+        "category": "prompd",
+        "icon": "$(check)"
+      },
+      {
+        "command": "prompd.createProjectFromTemplate",
+        "title": "New Project from Template",
+        "category": "prompd",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "prompd.retryPrompdAction",
+        "title": "Retry Generation",
+        "category": "prompd", 
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prompd.aiChat",
+        "title": "AI Code Assistant",
+        "category": "prompd",
+        "icon": "$(copilot)"
+      },
+      {
+        "command": "prompd.explainCode",
+        "title": "Explain Selected Code",
+        "category": "prompd",
+        "icon": "$(question)"
+      },
+      {
+        "command": "prompd.fixCode",
+        "title": "Fix Selected Code",
+        "category": "prompd",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "prompd.refactorCode",
+        "title": "Refactor Selected Code", 
+        "category": "prompd",
+        "icon": "$(refactor)"
+      },
+      {
+        "command": "prompd.generateTests",
+        "title": "Generate Tests",
+        "category": "prompd",
+        "icon": "$(test-view-icon)"
+      },
+      {
+        "command": "prompd.copyCode",
+        "title": "Copy Generated Code",
+        "category": "prompd",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "prompd.applyCodeAction",
+        "title": "Apply Code Changes",
+        "category": "prompd",
+        "icon": "$(check)"
+      },
+      {
+        "command": "prompd.previewCodeAction",
+        "title": "Preview Changes",
+        "category": "prompd",
+        "icon": "$(preview)"
+      },
+      {
+        "command": "prompd.chat.optimize",
+        "title": "🚀 Optimize Prompt",
+        "category": "Prompd Chat",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "prompd.chat.explain",
+        "title": "📖 Explain Prompt",
+        "category": "Prompd Chat",
+        "icon": "$(info)"
+      },
+      {
+        "command": "prompd.chat.addParameters",
+        "title": "🔧 Add Parameters",
+        "category": "Prompd Chat",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "prompd.chat.improveStructure",
+        "title": "🏗️ Improve Structure",
+        "category": "Prompd Chat",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "prompd.chat.generateFromDescription",
+        "title": "✨ Generate Prompt",
+        "category": "Prompd Chat",
+        "icon": "$(wand)"
+      },
+      {
+        "command": "prompd.chat.askCustom",
+        "title": "💬 Ask Custom Question",
+        "category": "Prompd Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "prompd.chat.optimizeWorkflow",
+        "title": "⚡ Optimize Workflow",
+        "category": "Prompd Chat",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "prompd.chat.addWorkflowStep",
+        "title": "➕ Add Workflow Step",
+        "category": "Prompd Chat", 
+        "icon": "$(add)"
+      },
+      {
+        "command": "prompd.chat.fixConnections",
+        "title": "🔗 Fix Connections",
+        "category": "Prompd Chat",
+        "icon": "$(link)"
+      },
+      {
+        "command": "prompd.chat.improveSelection",
+        "title": "✨ Improve Selection",
+        "category": "Prompd Chat",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "prompd.chat.explainSelection",
+        "title": "❓ Explain Selection",
+        "category": "Prompd Chat",
+        "icon": "$(question)"
+      },
+      {
+        "command": "prompd.chat.quickFix",
+        "title": "🔧 Quick Fix",
+        "category": "Prompd Chat",
+        "icon": "$(wrench)"
+      },
+      {
+        "command": "prompd.chat.showSuggestions",
+        "title": "💡 Show Suggestions",
+        "category": "Prompd Chat",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "prompd.chatHistory.refresh",
+        "title": "Refresh Chat History",
+        "category": "Prompd Chat",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prompd.chatHistory.clear",
+        "title": "Clear Chat History",
+        "category": "Prompd Chat",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "prompd.chatHistory.export",
+        "title": "Export Chat History",
+        "category": "Prompd Chat",
+        "icon": "$(export)"
+      },
+      {
+        "command": "prompd.openProject",
+        "title": "Open Project",
+        "category": "Prompd",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "prompd.refreshProjectExplorer",
+        "title": "Refresh Project Explorer",
+        "category": "Prompd",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "prompdChat",
+          "title": "Prompd Chat",
+          "icon": "$(comment-discussion)"
+        },
+        {
+          "id": "prompdExecute",
+          "title": "Execute Prompt",
+          "icon": "$(play-circle)"
+        },
+        {
+          "id": "prompdWorkflow",
+          "title": "Workflow Editor", 
+          "icon": "$(symbol-misc)"
+        },
+        {
+          "id": "prompdWorkspace",
+          "title": "Prompd Workspace",
+          "icon": "$(folder-library)"
+        },
+        {
+          "id": "prompdMarketplace",
+          "title": "Prompd Marketplace",
+          "icon": "$(extensions)"
+        }
+      ]
+    },
+    "views": {
+      "prompdChat": [
+        {
+          "id": "prompdChat.chatView",
+          "name": "Prompd AI Assistant",
+          "type": "webview",
+          "when": "true"
+        }
+      ],
+      "prompdExecute": [
+        {
+          "id": "prompdVariables",
+          "name": "Variables",
+          "icon": "$(symbol-variable)"
+        },
+        {
+          "id": "prompdParameters",
+          "name": "Parameters",
+          "icon": "$(settings-gear)"
+        }
+      ],
+      "prompdWorkflow": [
+        {
+          "id": "prompdFlowCanvas",
+          "name": "Flow Canvas",
+          "icon": "$(type-hierarchy)"
+        },
+        {
+          "id": "prompdSnippets",
+          "name": "Snippets",
+          "icon": "$(code)"
+        }
+      ],
+      "prompdWorkspace": [
+        {
+          "id": "prompdFiles",
+          "name": "Project Explorer",
+          "icon": "$(folder-library)"
+        },
+        {
+          "id": "prompdTemplates", 
+          "name": "Templates",
+          "icon": "$(file-code)"
+        }
+      ],
+      "prompdMarketplace": [
+        {
+          "id": "prompd.marketplaceView",
+          "name": "Browse Packages",
+          "type": "webview"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .prompd",
+          "command": "prompd.runPrompt",
+          "group": "prompd@1"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "prompd.explainCode",
+          "group": "ai@1"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "prompd.fixCode", 
+          "group": "ai@2"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "prompd.refactorCode",
+          "group": "ai@3"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "prompd.generateTests",
+          "group": "ai@4"
+        },
+        {
+          "command": "prompd.aiChat",
+          "group": "ai@5"
+        },
+        {
+          "when": "resourceExtname == .prompd || resourceExtname == .pdflow || resourceExtname == .pdproj",
+          "command": "prompd.chat.optimize",
+          "group": "prompd-chat@1"
+        },
+        {
+          "when": "resourceExtname == .prompd || resourceExtname == .pdflow || resourceExtname == .pdproj",
+          "command": "prompd.chat.explain",
+          "group": "prompd-chat@2"
+        },
+        {
+          "when": "resourceExtname == .prompd",
+          "command": "prompd.chat.addParameters",
+          "group": "prompd-chat@3"
+        },
+        {
+          "when": "resourceExtname == .pdflow",
+          "command": "prompd.chat.optimizeWorkflow", 
+          "group": "prompd-chat@3"
+        },
+        {
+          "when": "editorHasSelection && (resourceExtname == .prompd || resourceExtname == .pdflow || resourceExtname == .pdproj)",
+          "command": "prompd.chat.improveSelection",
+          "group": "prompd-chat@4"
+        },
+        {
+          "when": "editorHasSelection && (resourceExtname == .prompd || resourceExtname == .pdflow || resourceExtname == .pdproj)",
+          "command": "prompd.chat.explainSelection",
+          "group": "prompd-chat@5"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "prompd.addVariable",
+          "when": "view == prompdVariables",
+          "group": "navigation"
+        },
+        {
+          "command": "prompd.addParameter",
+          "when": "view == prompdParameters",
+          "group": "navigation"
+        },
+        {
+          "command": "prompd.runWithParameters",
+          "when": "view == prompdParameters",
+          "group": "navigation"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "prompdx.promptBuilder",
+        "displayName": "Prompt Builder",
+        "selector": [
+          {
+            "filenamePattern": "*.prompd"
+          }
+        ]
+      },
+      {
+        "viewType": "prompdx.flowCanvas",
+        "displayName": "Flow Canvas",
+        "selector": [
+          {
+            "filenamePattern": "*.pdflow"
+          }
+        ]
+      },
+      {
+        "viewType": "prompdx.projectWorkspace",
+        "displayName": "Prompd Project Workspace",
+        "selector": [
+          {
+            "filenamePattern": "*.pdproj"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "yaml": "^2.3.1"
+  },
+  "files": [
+    "out/**/*",
+    "bin/**/*",
+    "prompts/**/*",
+    "syntaxes/**/*",
+    "icons/**/*",
+    "language-configuration.json",
+    "package.json",
+    "README.md"
+  ]
+}

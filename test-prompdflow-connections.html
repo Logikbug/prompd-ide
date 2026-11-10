@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test PrompdFlow Connections</title>
+    <style>
+        body { margin: 0; font-family: Arial; }
+        #canvas { 
+            width: 100vw; 
+            height: 100vh; 
+            background: #f0f0f0; 
+            position: relative; 
+            overflow: hidden;
+        }
+        .node {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: move;
+        }
+        .port {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #333;
+            position: absolute;
+            cursor: crosshair;
+            z-index: 10;
+        }
+        .port.input {
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .port.output {
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .port:hover {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            transform: scale(1.3) translateY(-50%);
+        }
+        .port.active {
+            background: #ff9800;
+            border-color: #ff9800;
+        }
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        path {
+            stroke: #333;
+            stroke-width: 2;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas">
+        <svg id="connections"></svg>
+        <div class="node" id="node1" style="left: 100px; top: 100px;">
+            <div>Node 1 (Prompt)</div>
+            <div class="port output"></div>
+        </div>
+        <div class="node" id="node2" style="left: 400px; top: 200px;">
+            <div>Node 2 (Transform)</div>
+            <div class="port input"></div>
+            <div class="port output"></div>
+        </div>
+        <div class="node" id="node3" style="left: 700px; top: 100px;">
+            <div>Node 3 (Output)</div>
+            <div class="port input"></div>
+        </div>
+    </div>
+
+    <script>
+        let isConnecting = false;
+        let connectingFrom = null;
+        let connections = [];
+
+        // Add click handlers to all ports
+        document.querySelectorAll('.port').forEach(port => {
+            port.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handlePortClick(port);
+            });
+        });
+
+        function handlePortClick(portEl) {
+            const nodeEl = portEl.parentElement;
+            const portType = portEl.classList.contains('input') ? 'input' : 'output';
+            
+            console.log('Port clicked:', { node: nodeEl.id, portType, isConnecting });
+            
+            if (!isConnecting) {
+                if (portType === 'output') {
+                    isConnecting = true;
+                    connectingFrom = { nodeEl, portEl, portType };
+                    portEl.classList.add('active');
+                    console.log('Started connection from:', nodeEl.id);
+                }
+            } else {
+                if (portType === 'input' && connectingFrom.nodeEl.id !== nodeEl.id) {
+                    console.log('Creating connection:', connectingFrom.nodeEl.id, '->', nodeEl.id);
+                    createConnection(connectingFrom.nodeEl, nodeEl);
+                }
+                
+                document.querySelectorAll('.port.active').forEach(p => p.classList.remove('active'));
+                isConnecting = false;
+                connectingFrom = null;
+            }
+        }
+
+        function createConnection(sourceNode, targetNode) {
+            const connection = {
+                source: sourceNode.id,
+                target: targetNode.id
+            };
+            connections.push(connection);
+            drawConnection(sourceNode, targetNode);
+        }
+
+        function drawConnection(sourceNode, targetNode) {
+            const svg = document.getElementById('connections');
+            
+            const sourceRect = sourceNode.getBoundingClientRect();
+            const targetRect = targetNode.getBoundingClientRect();
+            const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+            
+            const sourceX = sourceRect.right - canvasRect.left;
+            const sourceY = sourceRect.top + sourceRect.height / 2 - canvasRect.top;
+            const targetX = targetRect.left - canvasRect.left;
+            const targetY = targetRect.top + targetRect.height / 2 - canvasRect.top;
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const controlOffset = Math.abs(targetX - sourceX) * 0.5;
+            
+            const d = `M ${sourceX} ${sourceY} C ${sourceX + controlOffset} ${sourceY}, ${targetX - controlOffset} ${targetY}, ${targetX} ${targetY}`;
+            
+            path.setAttribute('d', d);
+            svg.appendChild(path);
+        }
+
+        // Make nodes draggable
+        document.querySelectorAll('.node').forEach(node => {
+            let isDragging = false;
+            let dragOffset = { x: 0, y: 0 };
+
+            node.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('port')) return;
+                isDragging = true;
+                dragOffset.x = e.clientX - node.offsetLeft;
+                dragOffset.y = e.clientY - node.offsetTop;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    node.style.left = (e.clientX - dragOffset.x) + 'px';
+                    node.style.top = (e.clientY - dragOffset.y) + 'px';
+                    redrawConnections();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        });
+
+        function redrawConnections() {
+            const svg = document.getElementById('connections');
+            svg.innerHTML = '';
+            
+            connections.forEach(conn => {
+                const sourceNode = document.getElementById(conn.source);
+                const targetNode = document.getElementById(conn.target);
+                if (sourceNode && targetNode) {
+                    drawConnection(sourceNode, targetNode);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

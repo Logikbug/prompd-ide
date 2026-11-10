@@ -34,6 +34,7 @@ import { IWorkingCopyFileService, IFileOperationUndoRedoInfo, ICreateFileOperati
 import { IUriIdentityService } from '../../../../platform/uriIdentity/common/uriIdentity.js';
 import { IWorkspaceContextService, WORKSPACE_EXTENSION } from '../../../../platform/workspace/common/workspace.js';
 import { UTF8, UTF8_with_bom, UTF16be, UTF16le, encodingExists, toEncodeReadable, toDecodeStream, IDecodeStreamResult, DecodeStreamError, DecodeStreamErrorKind } from '../common/encoding.js';
+import { FOLDER_CONFIG_FOLDER_NAME } from '../../configuration/common/configuration.js';
 import { consumeStream, ReadableStream } from '../../../../base/common/stream.js';
 import { ILanguageService } from '../../../../editor/common/languages/language.js';
 import { ILogService } from '../../../../platform/log/common/log.js';
@@ -798,7 +799,7 @@ export class EncodingOracle extends Disposable implements IResourceEncodings {
 
 		// Folder Settings
 		this.contextService.getWorkspace().folders.forEach(folder => {
-			defaultEncodingOverrides.push({ parent: joinPath(folder.uri, '.vscode'), encoding: UTF8 });
+			defaultEncodingOverrides.push({ parent: joinPath(folder.uri, FOLDER_CONFIG_FOLDER_NAME), encoding: UTF8 });
 		});
 
 		return defaultEncodingOverrides;

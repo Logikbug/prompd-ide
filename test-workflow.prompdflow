@@ -1,0 +1,139 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "id": "test-workflow-001",
+    "name": "Content Generation Workflow",
+    "description": "A simple workflow for generating content with AI assistance",
+    "author": "Prompd IDE",
+    "version": "1.0.0",
+    "tags": ["content", "generation", "writing"],
+    "created": "2025-08-24T23:00:00.000Z",
+    "modified": "2025-08-24T23:00:00.000Z",
+    "schemaVersion": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "input-node",
+      "type": "parameter",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "label": "Topic Input",
+        "parameterType": "string",
+        "required": true,
+        "description": "Enter the topic you want to write about"
+      },
+      "inputPorts": [],
+      "outputPorts": [
+        {
+          "id": "topic-output",
+          "label": "Topic",
+          "dataType": "string",
+          "required": true
+        }
+      ],
+      "metadata": {
+        "label": "Topic Input",
+        "description": "Collects the main topic from user"
+      }
+    },
+    {
+      "id": "prompt-node",
+      "type": "prompt",
+      "position": { "x": 350, "y": 100 },
+      "data": {
+        "label": "Content Generator",
+        "template": "Write a comprehensive article about: {topic}. Include:\n1. Introduction\n2. Main content with examples\n3. Conclusion\n\nStyle: Professional and engaging",
+        "model": "gpt-4",
+        "temperature": 0.7
+      },
+      "inputPorts": [
+        {
+          "id": "topic-input",
+          "label": "Topic",
+          "dataType": "string",
+          "required": true
+        }
+      ],
+      "outputPorts": [
+        {
+          "id": "content-output",
+          "label": "Generated Content",
+          "dataType": "string",
+          "required": true
+        }
+      ],
+      "metadata": {
+        "label": "Content Generator",
+        "description": "Generates content based on topic"
+      }
+    },
+    {
+      "id": "output-node",
+      "type": "output",
+      "position": { "x": 600, "y": 100 },
+      "data": {
+        "label": "Final Output",
+        "format": "markdown",
+        "saveToFile": true
+      },
+      "inputPorts": [
+        {
+          "id": "content-input",
+          "label": "Content",
+          "dataType": "string",
+          "required": true
+        }
+      ],
+      "outputPorts": [],
+      "metadata": {
+        "label": "Final Output",
+        "description": "Formats and outputs the final content"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "input-to-prompt",
+      "sourceNodeId": "input-node",
+      "sourcePortId": "topic-output",
+      "targetNodeId": "prompt-node",
+      "targetPortId": "topic-input",
+      "metadata": {
+        "label": "Topic Flow",
+        "description": "Passes topic from input to prompt generator"
+      }
+    },
+    {
+      "id": "prompt-to-output",
+      "sourceNodeId": "prompt-node", 
+      "sourcePortId": "content-output",
+      "targetNodeId": "output-node",
+      "targetPortId": "content-input",
+      "metadata": {
+        "label": "Content Flow",
+        "description": "Passes generated content to output formatter"
+      }
+    }
+  ],
+  "variables": [
+    {
+      "id": "global-style",
+      "name": "writing_style",
+      "type": "string",
+      "value": "professional",
+      "description": "Default writing style for all content generation",
+      "scope": "global"
+    }
+  ],
+  "executionConfig": {
+    "maxConcurrentNodes": 3,
+    "timeout": 30000,
+    "retryAttempts": 2,
+    "errorHandling": "continue",
+    "logging": {
+      "level": "info",
+      "includeTimestamps": true,
+      "logExecutionPath": true
+    }
+  }
+}

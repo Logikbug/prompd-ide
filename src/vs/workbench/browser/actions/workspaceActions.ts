@@ -58,7 +58,7 @@ export class OpenFolderAction extends Action2 {
 	constructor() {
 		super({
 			id: OpenFolderAction.ID,
-			title: localize2('openFolder', 'Open Folder...'),
+			title: localize2('openFolder', 'Open Project...'),
 			category: Categories.File,
 			f1: true,
 			precondition: OpenFolderWorkspaceSupportContext,
@@ -86,7 +86,7 @@ export class OpenFolderViaWorkspaceAction extends Action2 {
 
 	// This action swaps the folders of a workspace with
 	// the selected folder and is a workaround for providing
-	// "Open Folder..." in environments that do not support
+	// "Open Project..." in environments that do not support
 	// this without having a workspace open (e.g. web serverless)
 
 	static readonly ID = 'workbench.action.files.openFolderViaWorkspace';
@@ -94,7 +94,7 @@ export class OpenFolderViaWorkspaceAction extends Action2 {
 	constructor() {
 		super({
 			id: OpenFolderViaWorkspaceAction.ID,
-			title: localize2('openFolder', 'Open Folder...'),
+			title: localize2('openFolder', 'Open Project...'),
 			category: Categories.File,
 			f1: true,
 			precondition: ContextKeyExpr.and(OpenFolderWorkspaceSupportContext.toNegated(), WorkbenchStateContext.isEqualTo('workspace')),

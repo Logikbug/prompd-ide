@@ -1,0 +1,87 @@
+Windows Registry Editor Version 5.00
+
+; Register .prompdproj file extension
+[HKEY_CLASSES_ROOT\.prompdproj]
+@="PrompdProject"
+"Content Type"="text/x-prompdproj"
+
+[HKEY_CLASSES_ROOT\.prompdproj\OpenWithProgids]
+"PrompdProject"=""
+
+; Register PrompdProject file type
+[HKEY_CLASSES_ROOT\PrompdProject]
+@="Prompd Project File"
+"FriendlyTypeName"="Prompd Project File"
+
+[HKEY_CLASSES_ROOT\PrompdProject\DefaultIcon]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\",1"
+
+[HKEY_CLASSES_ROOT\PrompdProject\shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\PrompdProject\shell\open]
+@="&Open with Prompd IDE"
+
+[HKEY_CLASSES_ROOT\PrompdProject\shell\open\command]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\PrompdProject\shell\edit]
+@="&Edit with Prompd IDE"
+
+[HKEY_CLASSES_ROOT\PrompdProject\shell\edit\command]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\" \"%1\""
+
+; Also register .prompd and .prompdflow file types for completeness
+[HKEY_CLASSES_ROOT\.prompd]
+@="PrompdFile"
+"Content Type"="text/x-prompd"
+
+[HKEY_CLASSES_ROOT\.prompd\OpenWithProgids]
+"PrompdFile"=""
+
+[HKEY_CLASSES_ROOT\PrompdFile]
+@="Prompd Prompt Definition File"
+"FriendlyTypeName"="Prompd Prompt Definition File"
+
+[HKEY_CLASSES_ROOT\PrompdFile\DefaultIcon]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\",2"
+
+[HKEY_CLASSES_ROOT\PrompdFile\shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\PrompdFile\shell\open]
+@="&Open with Prompd IDE"
+
+[HKEY_CLASSES_ROOT\PrompdFile\shell\open\command]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\.prompdflow]
+@="PrompdFlow"
+"Content Type"="application/x-prompdflow"
+
+[HKEY_CLASSES_ROOT\.prompdflow\OpenWithProgids]
+"PrompdFlow"=""
+
+[HKEY_CLASSES_ROOT\PrompdFlow]
+@="Prompd Workflow File"
+"FriendlyTypeName"="Prompd Workflow File"
+
+[HKEY_CLASSES_ROOT\PrompdFlow\DefaultIcon]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\",3"
+
+[HKEY_CLASSES_ROOT\PrompdFlow\shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\PrompdFlow\shell\open]
+@="&Open with Prompd IDE"
+
+[HKEY_CLASSES_ROOT\PrompdFlow\shell\open\command]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\" \"%1\""
+
+; Add to "Open with" context menu for all three file types
+[HKEY_CLASSES_ROOT\*\shell\PrompdIDE]
+@="Open with Prompd IDE"
+"AppliesTo"="System.FileName:\"*.prompd\" OR System.FileName:\"*.prompdflow\" OR System.FileName:\"*.prompdproj\""
+
+[HKEY_CLASSES_ROOT\*\shell\PrompdIDE\command]
+@="\"C:\\git\\github\\Logikbug\\prompd-ide\\prompd-ide.exe\" \"%1\""

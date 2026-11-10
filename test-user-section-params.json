@@ -1,0 +1,9 @@
+{
+    "user_message": "create a user section",
+    "message_type": "action_request",
+    "context_info": "Working on TypeScript project in Prompd IDE",
+    "project_info": "Building AI workflow platform",
+    "file_path": "C:\\git\\github\\Logikbug\\prompd-ide\\test-example.ts",
+    "file_content": "// This is my current TypeScript file\ninterface Project {\n  name: string;\n  description: string;\n  version: string;\n}\n\nclass ProjectManager {\n  private projects: Project[] = [];\n\n  addProject(project: Project): void {\n    this.projects.push(project);\n  }\n\n  getProjects(): Project[] {\n    return this.projects;\n  }\n}",
+    "selected_text": "class ProjectManager"
+}

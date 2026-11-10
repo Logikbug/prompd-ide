@@ -1,0 +1,7 @@
+{
+    "file_path": "src/prompdChatServiceSimple.ts",
+    "file_content": "#Context C:\\git\\github\\Logikbug\\prompd-ide\\extensions\\prompd\\src\\prompdChatServiceSimple.ts",
+    "language_id": "typescript",
+    "user_question": "Can you explain how the CLI integration works in this chat service?",
+    "context_info": "This is part of the Prompd IDE extension for VS Code"
+}

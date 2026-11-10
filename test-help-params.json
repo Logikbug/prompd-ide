@@ -1,0 +1,6 @@
+{
+    "user_message": "Can you help me optimize the system section of my prompt?",
+    "message_type": "help_request",
+    "context_info": "Working on a .prompd file",
+    "project_info": "Building AI workflow prompts"
+}

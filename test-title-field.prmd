@@ -1,0 +1,16 @@
+---
+title: "Test Title Field"
+description: "Testing title vs name field"
+version: "1.0.0"
+parameters:
+  - name: input
+    type: string
+    required: true
+    description: "Test input"
+---
+
+# Test Prompt
+
+This is a test with title field.
+
+{{input}}

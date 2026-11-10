@@ -18,6 +18,7 @@ import { IDirent, Promises as pfs } from '../../../base/node/pfs.js';
 import { listProcesses } from '../../../base/node/ps.js';
 import { IDiagnosticsService, IMachineInfo, IMainProcessDiagnostics, IRemoteDiagnosticError, IRemoteDiagnosticInfo, isRemoteDiagnosticError, IWorkspaceInformation, PerformanceInfo, SystemInfo, WorkspaceStatItem, WorkspaceStats } from '../common/diagnostics.js';
 import { ByteSize } from '../../files/common/files.js';
+import { FOLDER_CONFIG_FOLDER_NAME } from '../../workbench/services/configuration/common/configuration.js';
 import { IProductService } from '../../product/common/productService.js';
 import { ITelemetryService } from '../../telemetry/common/telemetry.js';
 import { IWorkspace } from '../../workspace/common/workspace.js';
@@ -180,7 +181,7 @@ export function getMachineInfo(): IMachineInfo {
 export async function collectLaunchConfigs(folder: string): Promise<WorkspaceStatItem[]> {
 	try {
 		const launchConfigs = new Map<string, number>();
-		const launchConfig = join(folder, '.vscode', 'launch.json');
+		const launchConfig = join(folder, FOLDER_CONFIG_FOLDER_NAME, 'launch.json');
 
 		const contents = await fs.promises.readFile(launchConfig);
 

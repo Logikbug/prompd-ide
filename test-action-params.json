@@ -1,0 +1,9 @@
+{
+    "user_message": "optimize the system section",
+    "message_type": "help_request",
+    "context_info": "Working in Prompd IDE",
+    "project_info": "Building AI workflow platform",
+    "file_path": "example.prompd",
+    "file_content": "---\nname: \"test-prompt\"\ndescription: \"A test prompt for optimization\"\nversion: \"1.0.0\"\n---\n\n# System\nYou are an AI assistant. You help users with various tasks. You provide assistance and answer questions. You are knowledgeable about many topics.\n\n# User\nPlease help me with my request.\n\n# Assistant",
+    "selected_text": "You are an AI assistant. You help users with various tasks. You provide assistance and answer questions. You are knowledgeable about many topics."
+}
